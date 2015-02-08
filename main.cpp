@@ -77,6 +77,15 @@ int main()
     cv::Mat image1 = cv::imread("numbers/1_a.png", CV_LOAD_IMAGE_GRAYSCALE);
     cv::Mat image2 = cv::imread("numbers/2_a.png", CV_LOAD_IMAGE_GRAYSCALE);
     cv::Mat image3 = cv::imread("numbers/3_a.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image1b = cv::imread("numbers/1_b.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image2b = cv::imread("numbers/2_b.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image3b = cv::imread("numbers/3_b.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image1c = cv::imread("numbers/1_c.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image2c = cv::imread("numbers/2_c.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image3c = cv::imread("numbers/3_c.png", CV_LOAD_IMAGE_GRAYSCALE);
+
+
+
     int cicle = 0;
 
     while(true)
@@ -86,12 +95,20 @@ int main()
         {
             saidas[out]->value = 0;
         }
-        int imgN = (cicle % 3)+1;
+        int imgN = (cicle % 9);
         Mat image;
-        if(imgN == 1) image = image1;
-        else if(imgN == 2) image = image2;
-        else if(imgN == 3) image = image3;
+        if(imgN == 0) image = image1;
+        else if(imgN == 1) image = image2;
+        else if(imgN == 2) image = image3;
 
+        else if(imgN == 3) image = image1b;
+        else if(imgN == 4) image = image2b;
+        else if(imgN == 5) image = image3b;
+        else if(imgN == 6) image = image1c;
+        else if(imgN == 7) image = image2c;
+        else if(imgN == 8) image = image3c;
+
+        imgN = (imgN %3)+1;
         cout << "image: " + std::to_string(imgN) << endl;
 
 
@@ -130,7 +147,12 @@ int main()
             }
         }
 
-        cout << gueesed+1 << " - Was it correct? " << endl;
+        namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
+        imshow( "Display window", image );                   // Show our image inside it.
+
+        waitKey(30);
+
+        cout << "I think it is: " << gueesed+1 << " - Is it correct? " << endl;
         string img;
         cin >> img;
         int correct = atoi(img.c_str())-1;
