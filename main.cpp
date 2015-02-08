@@ -1,33 +1,15 @@
 #include "opencv2/core/core.hpp"
 #include <opencv/highgui.h>
-#include <opencv2/video/tracking.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "opencv/cv.hpp"
-#include <iostream>
-#include <ctype.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <math.h>
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include <stdlib.h>
 #include <stdio.h>
-#include "opencv2/core/core.hpp"
-#include <opencv/highgui.h>
-#include <opencv2/video/tracking.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include "opencv/cv.hpp"
 #include <iostream>
 #include <ctype.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 #include <ctime>
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
-#include <stdlib.h>
-#include <stdio.h>
 
 using namespace std;
 using namespace cv;
@@ -81,24 +63,6 @@ int main()
         images[o] = cv::imread("numbers/"+std::to_string(o%10)+"_"+alph[pos%5]+".png", CV_LOAD_IMAGE_GRAYSCALE);
         if(o%10 == 9) pos++;
     }
-    /*
-    cv::Mat image1 = cv::imread("numbers/1_a.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image2 = cv::imread("numbers/2_a.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image3 = cv::imread("numbers/3_a.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image1b = cv::imread("numbers/1_b.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image2b = cv::imread("numbers/2_b.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image3b = cv::imread("numbers/3_b.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image1c = cv::imread("numbers/1_c.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image2c = cv::imread("numbers/2_c.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image3c = cv::imread("numbers/3_c.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image1d = cv::imread("numbers/1_d.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image2d = cv::imread("numbers/2_d.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image3d = cv::imread("numbers/3_d.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image1e = cv::imread("numbers/1_e.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image2e = cv::imread("numbers/2_e.png", CV_LOAD_IMAGE_GRAYSCALE);
-    cv::Mat image3e = cv::imread("numbers/3_e.png", CV_LOAD_IMAGE_GRAYSCALE);
-    */
-
 
     int cicle = 0;
     pos = 0;
