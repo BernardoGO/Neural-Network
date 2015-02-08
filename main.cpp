@@ -55,7 +55,7 @@ int main()
     cout << "Hello world!" << endl;
 
     neuron* pixels[50][50];
-    neuron* saidas[3];
+    neuron* saidas[10];
     for(int x = 0; x < 50; x++)
     {
         for(int y = 0; y < 50; y++)
@@ -63,7 +63,7 @@ int main()
             pixels[x][y] = new neuron();
         }
     }
-    for(int x = 0; x < 3; x++)
+    for(int x = 0; x < 10; x++)
     {
 
         saidas[x] = new neuron();
@@ -72,8 +72,16 @@ int main()
 
     cout << pixels[1][1]->sinapsis[1][1] << endl;
 
+    cv::Mat images[50];
+    char alph[5] = {  'a', 'b', 'c','d','e'};
+    int pos = 0;
 
-
+    for(int o = 0; o < 50; o++)
+    {
+        images[o] = cv::imread("numbers/"+std::to_string(o%10)+"_"+alph[pos%5]+".png", CV_LOAD_IMAGE_GRAYSCALE);
+        if(o%10 == 9) pos++;
+    }
+    /*
     cv::Mat image1 = cv::imread("numbers/1_a.png", CV_LOAD_IMAGE_GRAYSCALE);
     cv::Mat image2 = cv::imread("numbers/2_a.png", CV_LOAD_IMAGE_GRAYSCALE);
     cv::Mat image3 = cv::imread("numbers/3_a.png", CV_LOAD_IMAGE_GRAYSCALE);
@@ -83,36 +91,36 @@ int main()
     cv::Mat image1c = cv::imread("numbers/1_c.png", CV_LOAD_IMAGE_GRAYSCALE);
     cv::Mat image2c = cv::imread("numbers/2_c.png", CV_LOAD_IMAGE_GRAYSCALE);
     cv::Mat image3c = cv::imread("numbers/3_c.png", CV_LOAD_IMAGE_GRAYSCALE);
-
+    cv::Mat image1d = cv::imread("numbers/1_d.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image2d = cv::imread("numbers/2_d.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image3d = cv::imread("numbers/3_d.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image1e = cv::imread("numbers/1_e.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image2e = cv::imread("numbers/2_e.png", CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat image3e = cv::imread("numbers/3_e.png", CV_LOAD_IMAGE_GRAYSCALE);
+    */
 
 
     int cicle = 0;
+    pos = 0;
+    int teachFor = 500;
 
     while(true)
     {
         cicle++;
-        for(int out = 0; out < 3; out++)
+        for(int out = 0; out < 10; out++)
         {
             saidas[out]->value = 0;
         }
-        int imgN = (cicle % 9);
-        Mat image;
-        if(imgN == 0) image = image1;
-        else if(imgN == 1) image = image2;
-        else if(imgN == 2) image = image3;
+        int imgN = (cicle % 50);
+        Mat image = images[imgN];
 
-        else if(imgN == 3) image = image1b;
-        else if(imgN == 4) image = image2b;
-        else if(imgN == 5) image = image3b;
-        else if(imgN == 6) image = image1c;
-        else if(imgN == 7) image = image2c;
-        else if(imgN == 8) image = image3c;
-
-        imgN = (imgN %3)+1;
-        cout << "image: " + std::to_string(imgN) << endl;
+        cout << "image: " + std::to_string(cicle%10)+"_"+alph[pos%5] << endl;
+        if(cicle%10 == 9) pos++;
+        imgN = (imgN %10);
 
 
-        for(int out = 0; out < 3; out++)
+
+        for(int out = 0; out < 10; out++)
         {
 
             for(int x = 0; x < 50; x++)
@@ -128,9 +136,9 @@ int main()
             }
         }
 
-        for(int out = 0; out < 3; out++)
+        for(int out = 0; out < 10; out++)
         {
-            cout << out+1 << ": " + std::to_string(saidas[out]->value) << endl;
+            cout << out << ": " + std::to_string(saidas[out]->value) << endl;
         }
 
 
@@ -138,7 +146,7 @@ int main()
         int gueesed = -1;
         int maxd = 0;
 
-        for(int out = 0; out < 3; out++)
+        for(int out = 0; out < 10; out++)
         {
             if(saidas[out]->value >= maxd)
             {
@@ -152,10 +160,14 @@ int main()
 
         waitKey(30);
 
-        cout << "I think it is: " << gueesed+1 << " - Is it correct? " << endl;
+        cout << "I think it is: " << gueesed << " - Is it correct? " << endl;
         string img;
-        cin >> img;
-        int correct = atoi(img.c_str())-1;
+        if(cicle >= teachFor)
+            cin >> img;
+        else
+            img = std::to_string(imgN);
+
+        int correct = atoi(img.c_str());
         cout << "correct: " << correct << imgN<< endl;
 
         if(correct != gueesed)
