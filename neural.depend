@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1423361181 source:/home/bernardo/projects/neural2/neural/main.cpp
+	"opencv2/core/core.hpp"
+	<opencv/highgui.h>
+	<opencv2/video/tracking.hpp>
+	<opencv2/imgproc/imgproc.hpp>
+	"opencv/cv.hpp"
+	<iostream>
+	<ctype.h>
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	<math.h>
+	"opencv2/imgproc/imgproc.hpp"
+	"opencv2/highgui/highgui.hpp"
+	<stdlib.h>
+	<stdio.h>
+	"opencv2/core/core.hpp"
+	<opencv/highgui.h>
+	<opencv2/video/tracking.hpp>
+	<opencv2/imgproc/imgproc.hpp>
+	"opencv/cv.hpp"
+	<iostream>
+	<ctype.h>
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	<ctime>
+	"opencv2/imgproc/imgproc.hpp"
+	"opencv2/highgui/highgui.hpp"
+	<stdlib.h>
+	<stdio.h>
+
