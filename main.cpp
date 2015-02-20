@@ -34,7 +34,7 @@ public:
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    cout << "Started" << endl;
 
     neuron* pixels[50][50];
     neuron* saidas[10];
@@ -124,7 +124,7 @@ int main()
 
         waitKey(30);
 
-        cout << "I think it is: " << gueesed << " - Is it correct? " << endl;
+        cout << "I think it is: " << gueesed << " - The correct number is? " << endl;
         string img;
         if(cicle >= teachFor)
             cin >> img;
@@ -132,11 +132,11 @@ int main()
             img = std::to_string(imgN);
 
         int correct = atoi(img.c_str());
-        cout << "correct: " << correct << imgN<< endl;
+        //cout << "correct: " << correct << imgN<< endl;
 
         if(correct != gueesed)
         {
-            cout << "incorrect" << endl;
+            //cout << "incorrect" << endl;
             for(int x = 0; x < 50; x++)
             {
                 for(int y = 0; y < 50; y++)
@@ -144,15 +144,11 @@ int main()
                     uint pix = image.at<uchar>(x,y);
                     if(pix < 50)
                     {
-                        //saidas[out]->value += saidas[out]->sinapsis[x][y];
-
                         saidas[correct]->sinapsis[x][y] += 1;
                     }
                 }
             }
         }
-
-        //cout << std::to_string(pix) << endl;
 
     }
 
