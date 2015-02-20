@@ -66,7 +66,7 @@ int main()
 
     int cicle = 0;
     pos = 0;
-    int teachFor = 500;
+    int teachFor = 100;
 
     while(true)
     {
