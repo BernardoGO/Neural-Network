@@ -128,6 +128,7 @@ int main()
     int cicle = 0;
     pos = 0;
     int teachFor = 100;
+    int testFor = 10;
 
     while(true)
     {
@@ -140,24 +141,31 @@ int main()
         Mat image;
         if(cicle >= teachFor)
         {
-            drag = 0, select_flag = 0;
-            callback = false;
-            frame = cv::imread("empty.png", CV_LOAD_IMAGE_GRAYSCALE);
-            cv::imshow(src_window,frame);
-            
-            for (;;)
+            if(cicle >= teachFor+testFor)
             {
-                if(callback)
+                cout << "Use a pointing device to draw in the blank window. Only a single drag is allowed. It may guess wrongly in the first tries with different handwrittings." << endl;
+                drag = 0, select_flag = 0;
+                callback = false;
+                frame = cv::imread("empty.png", CV_LOAD_IMAGE_GRAYSCALE);
+                cv::imshow(src_window,frame);
+                
+                for (;;)
                 {
-                    //cap >> frame;
-                    if( callback )
-                            break;
-                    cv::imshow(src_window,frame);
-                }
+                    if(callback)
+                    {
+                        if( callback )
+                                break;
+                        cv::imshow(src_window,frame);
+                    }
 
-                cv::waitKey(30);
+                    cv::waitKey(30);
+                }
+                image = frame;
             }
-            image = frame;
+            else
+            {
+                image = images[imgN];
+            }
         }
         else
             image = images[imgN];
@@ -208,14 +216,23 @@ int main()
 
         waitKey(30);
 
-        cout << int(image.at<uchar>(0,0)) << "I think it is: " << gueesed << " - The correct number is? " << endl;
+        cout << "Neural Network Guess: " << gueesed << " - The correct number is? " << endl;
         string img;
-        if(cicle >= teachFor)
-            cin >> img;
-        else
-            img = std::to_string(imgN);
+        int correct;
 
-        int correct = atoi(img.c_str());
+        if(cicle >= teachFor)
+        {
+            cin >> img;
+            correct = atoi(img.c_str());
+        }
+        else
+        {
+            img = std::to_string(imgN);
+            correct = atoi(img.c_str());
+            cout << correct << endl;
+        }
+
+        
         //cout << "correct: " << correct << imgN<< endl;
 
         if(correct != gueesed)
